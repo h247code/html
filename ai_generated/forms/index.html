@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Builder Registration</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #111827, #1e293b, #3f3f46);
+            color: white;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 35px;
+            background: rgba(15, 23, 42, 0.96);
+            border-radius: 22px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 34px;
+            color: #f59e0b;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #cbd5e1;
+            margin-bottom: 30px;
+        }
+
+        fieldset {
+            border: 1px solid #475569;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        legend {
+            color: #f59e0b;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 0 12px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #e2e8f0;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #475569;
+            border-radius: 9px;
+            background: #1e293b;
+            color: white;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #f59e0b;
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .equipment {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px;
+            background: #1e293b;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .equipment:hover {
+            border-color: #f59e0b;
+            transform: translateY(-2px);
+        }
+
+        .equipment input {
+            width: auto;
+        }
+
+        .equipment label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        button {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit {
+            background: #f59e0b;
+            color: #111827;
+        }
+
+        .submit:hover {
+            background: #fbbf24;
+            transform: translateY(-2px);
+        }
+
+        .reset {
+            background: #475569;
+            color: white;
+        }
+
+        .reset:hover {
+            background: #64748b;
+        }
+
+        .required {
+            color: #ef4444;
+        }
+
+        @media (max-width: 750px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: auto;
+            }
+
+            .equipment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🏗️ Builder Registration</h1>
+
+    <p class="subtitle">
+        Register builders, qualifications and construction equipment
+    </p>
+
+    <form action="https://microsoft.com">
+
+        <!-- BUILDER DETAILS -->
+
+        <fieldset>
+
+            <legend>👷 Builder Details</legend>
+
+            <div class="grid">
+
+                <div class="form-group">
+                    <label for="firstName">
+                        First Name <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        placeholder="Enter first name" value="Ahmed"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">
+                        Last Name <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        placeholder="Enter last name" value="Hassan"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="builder@example.com" value="ahmed.hassan@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="07123 456789" value="07123 456789">
+                </div>
+
+                <div class="form-group">
+                    <label for="dob">Date of Birth <small style="color:#94a3b8;">(sample: 15/06/1992)</small></label>
+
+                    <input
+                        type="date"
+                        id="dob"
+                        name="dob">
+                </div>
+
+                <div class="form-group">
+                    <label for="idNumber">Builder ID</label>
+
+                    <input
+                        type="text"
+                        id="idNumber"
+                        name="idNumber"
+                        placeholder="Enter builder ID" value="BLD-2026-001">
+                </div>
+
+            </div>
+
+        </fieldset>
+
+
+        <!-- COMPANY -->
+
+        <fieldset>
+
+            <legend>🏢 Company Information</legend>
+
+            <div class="grid">
+
+                <div class="form-group">
+                    <label for="company">Company Name</label>
+
+                    <input
+                        type="text"
+                        id="company"
+                        name="company"
+                        placeholder="Company name" value="Hassan Construction Ltd">
+                </div>
+
+                <div class="form-group">
+                    <label for="jobTitle">Job Title</label>
+
+                    <input
+                        type="text"
+                        id="jobTitle"
+                        name="jobTitle"
+                        placeholder="e.g. Site Manager" value="Site Manager">
+                </div>
+
+                <div class="form-group">
+                    <label for="specialty">Building Speciality</label>
+
+                    <select id="specialty" name="specialty">
+
+                        <option value="">Choose speciality</option>
+                        <option selected>General Builder</option>
+                        <option>General Builder</option>
+                        <option selected>Bricklayer</option>
+                        <option>Carpenter</option>
+                        <option>Electrician</option>
+                        <option>Plumber</option>
+                        <option>Roofer</option>
+                        <option>Painter & Decorator</option>
+                        <option>Groundworker</option>
+                        <option>Plant Operator</option>
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Experience</label>
+
+                    <select id="experience" name="experience">
+
+                        <option value="">Select experience</option>
+                        <option selected>4–7 years</option>
+                        <option>Less than 1 year</option>
+                        <option>1–3 years</option>
+                        <option selected>4–7 years</option>
+                        <option>8–15 years</option>
+                        <option>15+ years</option>
+
+                    </select>
+                </div>
+
+            </div>
+
+        </fieldset>
+
+
+        <!-- QUALIFICATIONS -->
+
+        <fieldset>
+
+            <legend>📋 Qualifications & Training</legend>
+
+            <div class="grid">
+
+                <div class="form-group">
+                    <label for="qualification">
+                        Main Qualification
+                    </label>
+
+                    <input
+                        type="text"
+                        id="qualification"
+                        name="qualification"
+                        placeholder="e.g. NVQ Level 3" value="NVQ Level 3">
+                </div>
+
+                <div class="form-group">
+                    <label for="card">Site Card Type</label>
+
+                    <select id="card" name="card">
+
+                        <option value="">Select card</option>
+                        <option selected>CSCS</option>
+                        <option selected>CSCS</option>
+                        <option>CPCS</option>
+                        <option>NPORS</option>
+                        <option>Other</option>
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="expiry">Card Expiry Date <small style="color:#94a3b8;">(sample: 25/09/2027)</small></label>
+
+                    <input
+                        type="date"
+                        id="expiry"
+                        name="expiry">
+                </div>
+
+                <div class="form-group">
+                    <label for="training">Recent Training</label>
+
+                    <input
+                        type="text"
+                        id="training"
+                        name="training"
+                        placeholder="Enter training completed" value="First Aid &amp; Manual Handling">
+                </div>
+
+            </div>
+
+        </fieldset>
+
+
+        <!-- EQUIPMENT -->
+
+        <fieldset>
+
+            <legend>🛠️ Equipment</legend>
+
+            <p style="margin-bottom:15px;">
+                Select the equipment available to the builder.
+            </p>
+
+            <div class="equipment-grid">
+
+                <div class="equipment">
+                    <input type="checkbox" id="helmet" name="equipment" checked>
+                    <label for="helmet">Safety Helmet</label>
+                </div>
+
+                <div class="equipment">
+                    <input type="checkbox" id="boots" name="equipment" checked>
+                    <label for="boots">Safety Boots</label>
+                </div>
+
+                <div class="equipment">
+                    <input type="checkbox" id="gloves" name="equipment" checked>
+                    <label for="gloves">Work Gloves</label>
+                </div>
+
+                <div class="equipment">
+                    <input type="checkbox" id="drill" name="equipment" checked>
+                    <label for="drill">Power Drill</label>
+                </div>
+
+                <div class="equipment">
+                    <input type="checkbox" id="saw" name="equipment">
+                    <label for="saw">Circular Saw</label>
+                </div>
+
+                <div class="equipment">
+                    <input type="checkbox" id="ladder" name="equipment" checked>
+                    <label for="ladder">Ladder</label>
+                </div>
+
+                <div class="equipment">
+                    <input type="checkbox" id="level" name="equipment" checked>
+                    <label for="level">Laser Level</label>
+                </div>
+
+                <div class="equipment">
+                    <input type="checkbox" id="cement" name="equipment">
+                    <label for="cement">Cement Mixer</label>
+                </div>
+
+                <div class="equipment">
+                    <input type="checkbox" id="generator" name="equipment">
+                    <label for="generator">Generator</label>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="grid">
+
+                <div class="form-group">
+                    <label for="equipmentID">
+                        Equipment ID / Serial Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="equipmentID"
+                        name="equipmentID"
+                        placeholder="Equipment ID" value="EQ-DRL-00427">
+                </div>
+
+                <div class="form-group">
+                    <label for="condition">
+                        Equipment Condition
+                    </label>
+
+                    <select id="condition" name="condition">
+                        <option>Excellent</option>
+                        <option>Good</option>
+                        <option>Needs Maintenance</option>
+                        <option>Damaged</option>
+                    </select>
+                </div>
+
+                <div class="form-group full">
+                    <label for="equipmentNotes">
+                        Equipment Notes
+                    </label>
+
+                    <textarea
+                        id="equipmentNotes"
+                        name="equipmentNotes"
+                        placeholder="Describe equipment, maintenance or other details...">Power drill inspected on 20/09/2026; next maintenance due 20/12/2026.</textarea>
+<!--></textarea>
+                </div>
+
+            </div>
+
+        </fieldset>
+
+
+        <!-- SAFETY -->
+
+        <fieldset>
+
+            <legend>⚠️ Safety Information</legend>
+
+            <div class="grid">
+
+                <div class="form-group">
+                    <label for="firstAid">
+                        First Aid Training
+                    </label>
+
+                    <select id="firstAid" name="firstAid">
+
+                        <option selected>Yes</option>
+                        <option>No</option>
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="ppe">
+                        PPE Training
+                    </label>
+
+                    <select id="ppe" name="ppe">
+
+                        <option selected>Yes</option>
+                        <option>No</option>
+
+                    </select>
+                </div>
+
+                <div class="form-group full">
+
+                    <label for="medical">
+                        Important Safety Information
+                    </label>
+
+                    <textarea
+                        id="medical"
+                        name="medical"
+                        placeholder="Enter relevant safety information...">No known work restrictions. Emergency procedures reviewed on 18/09/2026.</textarea>
+<!--></textarea>
+
+                </div>
+
+            </div>
+
+        </fieldset>
+
+
+        <!-- EMERGENCY CONTACT -->
+
+        <fieldset>
+
+            <legend>🚨 Emergency Contact</legend>
+
+            <div class="grid">
+
+                <div class="form-group">
+                    <label for="emergencyName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="emergencyName"
+                        name="emergencyName"
+                        placeholder="Emergency contact" value="Fatima Hassan">
+                </div>
+
+                <div class="form-group">
+                    <label for="relationship">
+                        Relationship
+                    </label>
+
+                    <input
+                        type="text"
+                        id="relationship"
+                        name="relationship"
+                        placeholder="e.g. Parent" value="Spouse">
+                </div>
+
+                <div class="form-group">
+                    <label for="emergencyPhone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="emergencyPhone"
+                        name="emergencyPhone"
+                        placeholder="Emergency phone" value="07234 567890">
+                </div>
+
+                <div class="form-group">
+                    <label for="emergencyEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="emergencyEmail"
+                        name="emergencyEmail"
+                        placeholder="Emergency email" value="fatima.hassan@example.com">
+                </div>
+
+            </div>
+
+        </fieldset>
+
+
+        <!-- CONFIRMATION -->
+
+        <fieldset>
+
+            <legend>✅ Confirmation</legend>
+
+            <div class="equipment">
+
+                <input
+                    type="checkbox"
+                    id="confirm"
+                    name="confirm"
+                    required>
+
+                <label for="confirm">
+                    I confirm that the information provided is accurate.
+                </label>
+
+            </div>
+
+        </fieldset>
+
+
+        <!-- BUTTONS -->
+
+        <div class="buttons">
+
+            <button
+                type="reset"
+                class="reset">
+                Reset Form
+            </button>
+
+            <button
+                type="submit"
+                class="submit">
+                Register Builder
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>
